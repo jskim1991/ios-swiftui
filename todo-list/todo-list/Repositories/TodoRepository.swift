@@ -8,15 +8,15 @@ protocol TodoRepository: Sendable {
 
 struct HTTPTodoRepository: TodoRepository {
     private let baseURL: URL
-    private let session: URLSession
+    private let httpClient: HTTPClient
 
-    init(baseURL: URL = URL(string: "http://localhost:8080")!, session: URLSession = .shared) {
+    init(baseURL: URL = URL(string: "http://localhost:8080")!, httpClient: HTTPClient = URLSession.shared) {
         self.baseURL = baseURL
-        self.session = session
+        self.httpClient = httpClient
     }
 
     func fetchTodos() async throws -> [Todo] {
-        let (data, _) = try await session.data(from: todosURL)
+        let (data, _) = try await httpClient.data(for: URLRequest(url: todosURL))
         return try JSONDecoder().decode([Todo].self, from: data)
     }
 
@@ -25,14 +25,14 @@ struct HTTPTodoRepository: TodoRepository {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONEncoder().encode(NewTodoRequest(description: description, tags: []))
-        let (data, _) = try await session.data(for: request)
+        let (data, _) = try await httpClient.data(for: request)
         return try JSONDecoder().decode(Todo.self, from: data)
     }
 
     func deleteTodo(id: Int) async throws {
         var request = URLRequest(url: todosURL.appending(path: "\(id)"))
         request.httpMethod = "DELETE"
-        _ = try await session.data(for: request)
+        _ = try await httpClient.data(for: request)
     }
 
     private var todosURL: URL {
