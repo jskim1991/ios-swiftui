@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    let viewModel: TodoListViewModel
+
     var body: some View {
-        TodoListApp()
+        TodoListApp(viewModel: viewModel)
     }
 }
 
 struct TodoListApp: View {
-    @State private var tasks: [String] = ["Learn Kotlin", "Learn iOS", "Learn Spring"]
-    @State private var newTask: String = ""
-    
+    @State var viewModel: TodoListViewModel
+
     var body: some View {
         NavigationStack {
             HStack {
-                TextField("New task", text: $newTask)
+                TextField("New task", text: $viewModel.newTask)
                     .textFieldStyle(.roundedBorder)
                     .padding(.leading)
                 
@@ -34,29 +35,31 @@ struct TodoListApp: View {
             .padding()
             
             List {
-                ForEach(tasks, id: \.self) { task in
-                    Text(task)
+                ForEach(viewModel.todos) { todo in
+                    Text(todo.description)
                 }
                 .onDelete(perform: deleteTask(at:))
             }
             .navigationTitle("Todo List")
         }
+        .task {
+            await viewModel.load()
+        }
     }
     
     func addTask() {
-        if newTask.isEmpty {
-            return
+        Task {
+            await viewModel.addTask()
         }
-        
-        tasks.append(newTask)
-        newTask = ""
     }
     
     func deleteTask(at offsets: IndexSet) {
-        tasks.remove(atOffsets: offsets)
+        Task {
+            await viewModel.deleteTask(at: offsets)
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: TodoListViewModel(repository: HTTPTodoRepository()))
 }

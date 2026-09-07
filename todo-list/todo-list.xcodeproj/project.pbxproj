@@ -135,6 +135,7 @@
 			);
 			name = "todo-listTests";
 			packageProductDependencies = (
+				697D5701304450D700D90FCD /* ViewInspector */,
 			);
 			productName = "todo-listTests";
 			productReference = 697D56A4304450D700D90FCD /* todo-listTests.xctest */;
@@ -197,6 +198,9 @@
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 697D5698304450D600D90FCD /* Products */;
+			packageReferences = (
+				697D5700304450D700D90FCD /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -570,6 +574,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+/* Begin XCRemoteSwiftPackageReference section */
+		697D5700304450D700D90FCD /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		697D5701304450D700D90FCD /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 697D5700304450D700D90FCD /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 	};
 	rootObject = 697D568F304450D600D90FCD /* Project object */;
 }
