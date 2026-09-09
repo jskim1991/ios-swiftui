@@ -11,64 +11,71 @@ struct CourseDetailView: View {
     
     var course: Course
     var cart: Cart
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            ZStack(alignment: .bottom) {
-                Image("CoursesBannerPro")
-                    .resizable()
-                    .scaledToFit()
-                    .blur(radius: 5)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                ZStack(alignment: .bottom) {
+                    Image("CoursesBannerPro")
+                        .resizable()
+                        .scaledToFit()
+                        .blur(radius: 5)
+                    
+                    Text(course.title)
+                        .bold()
+                        .font(.title)
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .background(.ultraThinMaterial)
+                }
+                .frame(maxWidth: 300)
+                .frame(maxWidth: .infinity)
                 
-                Text(course.title)
+                VStack(alignment: .leading) {
+                    Text(course.desc)
+                    listItem(item: course.duration)
+                    listItem(item: course.category.rawValue)
+                    listItem(item: course.publishedDate.formatted(date: .abbreviated, time: .omitted))
+                    listItem(item: course.price.formattedCurrency())
+                }
+                .padding()
+                
+                Text("Related Courses")
                     .bold()
-                    .font(.title)
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-                    .background(.ultraThinMaterial)
-            }
-            
-            VStack(alignment: .leading) {
-                Text(course.desc)
-                listItem(item: course.duration)
-                listItem(item: course.category.rawValue)
-                listItem(item: course.publishedDate.formatted(date: .abbreviated, time: .omitted))
-            }
-            .padding()
-            
-            Text("Related Courses")
-                .bold()
-            
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(Course.sampleData) { c in
-                        Text(c.title)
-                            .frame(width: 100, height: 100)
-                            .padding()
-                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30))
+                
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(Course.sampleData) { c in
+                            Text(c.title)
+                                .frame(width: 100, height: 100)
+                                .padding()
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30))
+                        }
                     }
                 }
+                
+                Spacer()
+                
+                Button(action: {
+                    cart.addCourse(course: course)
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Label(
+                        isInCart ? "Already Added to Cart" : "Add to Cart for \(course.price.formattedCurrency())",
+                        systemImage: isInCart ? "checkmark.circle.fill" : "cart"
+                    )
+                    .frame(height: 50)
+                    .frame(maxWidth: .infinity)
+                    .background(isInCart ? .green : .blue, in: RoundedRectangle(cornerRadius: 2))
+                    .foregroundStyle(.white)
+                    .contentShape(Rectangle())
+                }
+                .disabled(isInCart)
+                .padding(.bottom)
             }
-            
-            Spacer()
-            
-            Button(action: {
-                cart.addCourse(course: course)
-            }) {
-                Label(
-                    isInCart ? "Already Added to Cart" : "Add to Cart",
-                    systemImage: isInCart ? "checkmark.circle.fill" : "cart"
-                )
-                .frame(height: 50)
-                .frame(maxWidth: .infinity)
-                .background(isInCart ? .green : .blue, in: RoundedRectangle(cornerRadius: 2))
-                .foregroundStyle(.white)
-                .contentShape(Rectangle())
-            }
-            .disabled(isInCart)
-            .padding(.bottom)
+            .padding()
         }
-        .padding()
     }
     
     private var isInCart: Bool {

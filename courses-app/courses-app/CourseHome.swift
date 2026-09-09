@@ -14,8 +14,6 @@ struct CourseHome: View {
     
     var body: some View {
         TabView {
-            
-        
             NavigationStack {
                 List(courses) { course in
                     CourseCard(course: course)
@@ -24,7 +22,7 @@ struct CourseHome: View {
                             NavigationLink(value: course) {
                                 EmptyView()
                             }
-                                .opacity(0)
+                            .opacity(0)
                         )
                 }
                 .listStyle(.plain)
