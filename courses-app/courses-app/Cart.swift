@@ -12,6 +12,11 @@ class Cart {
     var courses: [Course] = []
 
     func addCourse(course: Course) {
+        guard !contains(course: course) else { return }
         courses.append(course)
+    }
+
+    func contains(course: Course) -> Bool {
+        courses.contains { $0.id == course.id }
     }
 }
