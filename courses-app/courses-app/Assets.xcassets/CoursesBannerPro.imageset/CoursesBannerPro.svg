@@ -1,0 +1,88 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="0.32" cy="0.26" r="0.95">
+      <stop offset="0" stop-color="#6D8BFF"/>
+      <stop offset="0.55" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#3B1E80"/>
+    </radialGradient>
+    <linearGradient id="capGrad" x1="256" y1="96" x2="256" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B3A63"/>
+      <stop offset="1" stop-color="#0B1120"/>
+    </linearGradient>
+    <linearGradient id="bookRed" x1="150" y1="356" x2="362" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF9A6B"/>
+      <stop offset="1" stop-color="#F0552F"/>
+    </linearGradient>
+    <linearGradient id="bookYel" x1="164" y1="322" x2="376" y2="356" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD874"/>
+      <stop offset="1" stop-color="#F2A93B"/>
+    </linearGradient>
+    <linearGradient id="bookGrn" x1="140" y1="288" x2="352" y2="322" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5BE9A6"/>
+      <stop offset="1" stop-color="#22B47A"/>
+    </linearGradient>
+    <linearGradient id="playGrad" x1="226" y1="146" x2="286" y2="206" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DCE4FF"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0B1120" flood-opacity="0.35"/>
+    </filter>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="120" fill="url(#bgGlow)"/>
+  <rect x="0" y="0" width="512" height="512" rx="120" fill="url(#sheen)"/>
+
+  <!-- Decorative orbits -->
+  <g opacity="0.18" stroke="#FFFFFF" fill="none">
+    <circle cx="256" cy="248" r="196" stroke-width="2" stroke-dasharray="4 14"/>
+    <circle cx="256" cy="248" r="150" stroke-width="2" stroke-dasharray="4 14"/>
+  </g>
+
+  <!-- Sparkles -->
+  <g fill="#FFFFFF" filter="url(#glow)">
+    <path d="M104 120 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7 z" opacity="0.9"/>
+    <path d="M420 96 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 z" opacity="0.8"/>
+    <path d="M436 372 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6 z" opacity="0.75"/>
+    <circle cx="92" cy="356" r="6" opacity="0.7"/>
+    <circle cx="392" cy="188" r="4" opacity="0.7"/>
+  </g>
+
+  <!-- Stack of books -->
+  <g filter="url(#softShadow)">
+    <rect x="150" y="356" width="212" height="36" rx="9" fill="url(#bookRed)"/>
+    <rect x="158" y="362" width="10" height="24" rx="5" fill="#FFFFFF" opacity="0.5"/>
+    <rect x="164" y="320" width="212" height="36" rx="9" fill="url(#bookYel)"/>
+    <rect x="172" y="326" width="10" height="24" rx="5" fill="#FFFFFF" opacity="0.5"/>
+    <rect x="140" y="284" width="212" height="36" rx="9" fill="url(#bookGrn)"/>
+    <rect x="148" y="290" width="10" height="24" rx="5" fill="#FFFFFF" opacity="0.5"/>
+  </g>
+
+  <!-- Graduation cap -->
+  <g filter="url(#softShadow)">
+    <path d="M256 112 L400 174 L256 236 L112 174 Z" fill="url(#capGrad)"/>
+    <path d="M256 112 L400 174 L256 236 Z" fill="#FFFFFF" opacity="0.06"/>
+    <path d="M178 202 L178 254 C178 280 334 280 334 254 L334 202 L256 234 Z" fill="#2B3654"/>
+    <path d="M178 202 L256 234 L256 246 L178 214 Z" fill="#1B2440"/>
+    <line x1="400" y1="174" x2="400" y2="244" stroke="#FFD874" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="400" cy="252" r="13" fill="#FFD874"/>
+    <circle cx="400" cy="252" r="6" fill="#F2A93B"/>
+  </g>
+
+  <!-- Play button -->
+  <g filter="url(#glow)">
+    <circle cx="256" cy="176" r="34" fill="url(#playGrad)"/>
+    <path d="M244 158 L276 176 L244 194 Z" fill="#4F46E5"/>
+  </g>
+</svg>

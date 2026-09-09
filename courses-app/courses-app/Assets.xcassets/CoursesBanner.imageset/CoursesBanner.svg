@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F7CFF"/>
+      <stop offset="1" stop-color="#7A3CFF"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="256" y1="96" x2="256" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1F2A44"/>
+      <stop offset="1" stop-color="#101828"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <g opacity="0.12" fill="#FFFFFF">
+    <circle cx="96" cy="88" r="10"/>
+    <circle cx="430" cy="120" r="7"/>
+    <circle cx="404" cy="404" r="12"/>
+    <circle cx="108" cy="420" r="7"/>
+  </g>
+
+  <!-- Stack of books -->
+  <g>
+    <rect x="150" y="356" width="212" height="34" rx="8" fill="#FF7A59"/>
+    <rect x="164" y="322" width="212" height="34" rx="8" fill="#FFC24B"/>
+    <rect x="140" y="288" width="212" height="34" rx="8" fill="#3ECf8E"/>
+  </g>
+
+  <!-- Graduation cap -->
+  <g>
+    <path d="M256 118 L392 176 L256 234 L120 176 Z" fill="url(#cap)"/>
+    <path d="M180 200 L180 250 C180 274 332 274 332 250 L332 200 L256 232 Z" fill="#2B3654"/>
+    <line x1="392" y1="176" x2="392" y2="238" stroke="#FFC24B" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="392" cy="246" r="12" fill="#FFC24B"/>
+  </g>
+
+  <!-- Play button (online course) -->
+  <g>
+    <circle cx="256" cy="176" r="30" fill="#FFFFFF"/>
+    <path d="M246 160 L274 176 L246 192 Z" fill="#4F7CFF"/>
+  </g>
+</svg>
