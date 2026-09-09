@@ -55,16 +55,24 @@ struct CourseDetailView: View {
             Button(action: {
                 cart.addCourse(course: course)
             }) {
-                Label("Add to Cart", systemImage: "cart")
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-                    .background(.blue, in: RoundedRectangle(cornerRadius: 2))
-                    .foregroundStyle(.white)
-                    .contentShape(Rectangle())
+                Label(
+                    isInCart ? "Already Added to Cart" : "Add to Cart",
+                    systemImage: isInCart ? "checkmark.circle.fill" : "cart"
+                )
+                .frame(height: 50)
+                .frame(maxWidth: .infinity)
+                .background(isInCart ? .green : .blue, in: RoundedRectangle(cornerRadius: 2))
+                .foregroundStyle(.white)
+                .contentShape(Rectangle())
             }
+            .disabled(isInCart)
             .padding(.bottom)
         }
         .padding()
+    }
+    
+    private var isInCart: Bool {
+        cart.contains(course: course)
     }
     
     @ViewBuilder
