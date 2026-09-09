@@ -17,6 +17,6 @@ class Cart {
     }
 
     func contains(course: Course) -> Bool {
-        courses.contains { $0.id == course.id }
+        courses.contains(where: { existing in existing.id == course.id })
     }
 }
