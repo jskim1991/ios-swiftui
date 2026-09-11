@@ -21,13 +21,13 @@ struct MessageView: View {
                         Text(textContent)
                             .padding(10)
                             .background(isHumanMessage ? .blue : .clear, in: .rect(cornerRadius: 20))
-                            .foregroundStyle(isHumanMessage ? .white : .black)
+                            .foregroundStyle(isHumanMessage ? .white : .primary)
                             .frame(maxWidth: .infinity, alignment: isHumanMessage ? .trailing : .leading)
                     } else {
                         Text(text.content)
                             .padding(10)
                             .background(isHumanMessage ? .blue : .clear, in: .rect(cornerRadius: 20))
-                            .foregroundStyle(isHumanMessage ? .white : .black)
+                            .foregroundStyle(isHumanMessage ? .white : .primary)
                             .frame(maxWidth: .infinity, alignment: isHumanMessage ? .trailing : .leading)
                     }
                 case .structure(let structure):
